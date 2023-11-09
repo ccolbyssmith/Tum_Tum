@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddx45e56w0f41"]
+
+[ext_resource type="Script" path="res://Scripts/move.gd" id="1_iu1u6"]
+[ext_resource type="Texture2D" uid="uid://baqost50648bg" path="res://Sprites/Stick_Man.png" id="1_oh2pe"]
+[ext_resource type="Texture2D" uid="uid://bw0sh8tc6e8p1" path="res://Sprites/Hallway.png" id="3_8drsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxpf"]
+size = Vector2(103, 112)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.7, 1.7)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(0, 100)
+motion_mode = 1
+script = ExtResource("1_iu1u6")
+
+[node name="StickMan" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(6.9375, 6.9375)
+texture = ExtResource("1_oh2pe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_gcxpf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+
+[node name="Hallway" type="Sprite2D" parent="."]
+texture = ExtResource("3_8drsl")
