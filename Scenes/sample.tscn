@@ -1,11 +1,105 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddx45e56w0f41"]
+[gd_scene load_steps=9 format=3 uid="uid://ddx45e56w0f41"]
 
 [ext_resource type="Script" path="res://Scripts/move.gd" id="1_iu1u6"]
 [ext_resource type="Texture2D" uid="uid://baqost50648bg" path="res://Sprites/Stick_Man.png" id="1_oh2pe"]
+[ext_resource type="Texture2D" uid="uid://bse65y7rbp57x" path="res://Sprites/Stick_Man_1.png" id="2_p0d21"]
 [ext_resource type="Texture2D" uid="uid://bw0sh8tc6e8p1" path="res://Sprites/Hallway.png" id="3_8drsl"]
+[ext_resource type="Texture2D" uid="uid://cm2b6c1o7xrgy" path="res://Sprites/Stick_Man_2.png" id="3_t68wu"]
+[ext_resource type="Texture2D" uid="uid://llgihuk20vc1" path="res://Sprites/Stick_Man_3.png" id="4_6ea4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxpf"]
 size = Vector2(103, 112)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ouqji"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p0d21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t68wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ea4i")
+}],
+"loop": true,
+"name": &"run_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p0d21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t68wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ea4i")
+}],
+"loop": true,
+"name": &"run_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p0d21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t68wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ea4i")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p0d21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t68wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ea4i")
+}],
+"loop": true,
+"name": &"run_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oh2pe")
+}],
+"loop": true,
+"name": &"stand_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oh2pe")
+}],
+"loop": true,
+"name": &"stand_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oh2pe")
+}],
+"loop": true,
+"name": &"stand_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oh2pe")
+}],
+"loop": true,
+"name": &"stand_up",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,15 +112,15 @@ position = Vector2(0, 100)
 motion_mode = 1
 script = ExtResource("1_iu1u6")
 
-[node name="StickMan" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(6.9375, 6.9375)
-texture = ExtResource("1_oh2pe")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_gcxpf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(1, 0)
+scale = Vector2(6.375, 7)
+sprite_frames = SubResource("SpriteFrames_ouqji")
+animation = &"run_down"
 
 [node name="Hallway" type="Sprite2D" parent="."]
 texture = ExtResource("3_8drsl")

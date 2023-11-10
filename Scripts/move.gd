@@ -1,15 +1,41 @@
 extends CharacterBody2D
 
-@export var speed = 1
+@export var speed = 1;
 @export var y_pos = 0;
+var direction = Enums.Directions.UP;
+
+@onready var _animated_sprite = $AnimatedSprite2D;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if direction == Enums.Directions.UP:
+		_animated_sprite.play("");
 
+"""
+In order to correctly display animation, animation must titled as follows:
+	-Movement animation must be titled "run_<direction>".
+	-IDLE animation must be titled "stand_<direction>".
+Note: <direction> is the direction the character is facing.
+"""
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	# true if player moves, else false
+	var move: bool = false;
+	
+	# plays animation corresponding to given action
+	for action in Enums.Directions.values():
+		var action_name: String = Enums.directionToString(action);
+		var animation_name: String = "run_" + action_name;
+		if !move and Input.is_action_pressed(action_name):
+			_animated_sprite.play(animation_name);
+			move = true;
+			direction = action
+			
+	# if player isn't moving, do idle animation
+	if !move:
+		var idle_animation_name: String = "stand_" + Enums.directionToString(direction);
+		_animated_sprite.play(idle_animation_name);
+		
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down");
