@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 1;
+@export var speed = .5;
 @export var y_pos = 0;
+@export var x_pos = 0;
 var direction = Enums.Directions.UP;
 
 @onready var _animated_sprite = $AnimatedSprite2D;
@@ -29,7 +30,7 @@ func _process(delta):
 		if !move and Input.is_action_pressed(action_name):
 			_animated_sprite.play(animation_name);
 			move = true;
-			direction = action
+			direction = action;
 			
 	# if player isn't moving, do idle animation
 	if !move:
@@ -43,16 +44,17 @@ func get_input():
 
 func _physics_process(delta):
 	get_input();
-	# change x pos
-	self.position.x += velocity.x;
-	# change logical y pos (not graphical y pos)
+	
+	# change logical x & y pos (not graphical y pos)
 	y_pos -= velocity.y;
+	x_pos += velocity.x;
 	
 	# change scale based off logical y pos
-	var scale_factor: float = pow(2, -(y_pos / 100));
+	var change_factor: int = 100;
+	var scale_factor: float = pow(2, -(y_pos / change_factor)) * speed;
 	var scaler: Vector2 = Vector2(scale_factor, scale_factor);
 	self.scale = scaler;
 	
-	# change graphical y pos based of logical y pos
-	var graph_y_pos: float = 2;
+	# change graphical x & y pos based off logical positions
 	self.position.y = scale_factor * 100;
+	self.position.x = x_pos * pow(2, -(y_pos * 1.7 / change_factor)) * 4 * speed;
