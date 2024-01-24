@@ -3,7 +3,8 @@ extends Node
 """Finds the dialogue we want to display, and then deisplays that dialogue."""
 
 """The name of file containing the dialogue we want to display.
-The filename will be relative to 'res://Text' directory."""
+The filename will be relative to 'res://Text' directory.
+Make sure to include '.txt' at the end of filename as well"""
 @export var filename: String;
 
 """Label that will display the current speaker"""
