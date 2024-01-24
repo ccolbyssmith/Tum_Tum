@@ -164,7 +164,6 @@ current = true
 texture = ExtResource("1_1tkyy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00412703, 0.0297869, 0)
 shape = SubResource("BoxShape3D_xibr3")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
