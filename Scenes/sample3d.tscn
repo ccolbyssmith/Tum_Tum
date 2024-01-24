@@ -1,0 +1,219 @@
+[gd_scene load_steps=17 format=3 uid="uid://cp3n2q6fy6mlu"]
+
+[ext_resource type="Texture2D" uid="uid://cus4qulkics1h" path="res://Sprites/Apple.png" id="1_1tkyy"]
+[ext_resource type="Script" path="res://Scripts/move3d.gd" id="2_cg6c4"]
+[ext_resource type="Texture2D" uid="uid://baqost50648bg" path="res://Sprites/Stick_Man.png" id="2_jf1g1"]
+[ext_resource type="Texture2D" uid="uid://cm2b6c1o7xrgy" path="res://Sprites/Stick_Man_2.png" id="4_54yp6"]
+[ext_resource type="Texture2D" uid="uid://llgihuk20vc1" path="res://Sprites/Stick_Man_3.png" id="5_jfisl"]
+[ext_resource type="Texture2D" uid="uid://bse65y7rbp57x" path="res://Sprites/Stick_Man_1.png" id="6_7odrp"]
+[ext_resource type="Script" path="res://Scripts/DialogueHandler.gd" id="7_7qd7d"]
+
+[sub_resource type="Environment" id="Environment_1kpqk"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwyyd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xibr3"]
+size = Vector3(0.15, 0.16, 0.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0a2qv"]
+size = Vector3(0.15, 0.16, 0.02)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpdkp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jf1g1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_54yp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jfisl")
+}],
+"loop": true,
+"name": &"run_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7odrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_54yp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jfisl")
+}],
+"loop": true,
+"name": &"run_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7odrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_54yp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jfisl")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7odrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_54yp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jfisl")
+}],
+"loop": true,
+"name": &"run_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jf1g1")
+}],
+"loop": true,
+"name": &"stand_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jf1g1")
+}],
+"loop": true,
+"name": &"stand_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jf1g1")
+}],
+"loop": true,
+"name": &"stand_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jf1g1")
+}],
+"loop": true,
+"name": &"stand_up",
+"speed": 5.0
+}]
+
+[sub_resource type="FontFile" id="FontFile_ofjqi"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/240/0 = Vector2(0, 0)
+cache/0/240/0/ascent = 0.0
+cache/0/240/0/descent = 0.0
+cache/0/240/0/underline_position = 0.0
+cache/0/240/0/underline_thickness = 0.0
+cache/0/240/0/scale = 1.0
+cache/0/240/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/240/0/kerning_overrides/240/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_enn0t"]
+font = SubResource("FontFile_ofjqi")
+font_size = 240
+
+[sub_resource type="FontFile" id="FontFile_wfcay"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/120/0 = Vector2(0, 0)
+cache/0/120/0/ascent = 0.0
+cache/0/120/0/descent = 0.0
+cache/0/120/0/underline_position = 0.0
+cache/0/120/0/underline_thickness = 0.0
+cache/0/120/0/scale = 1.0
+cache/0/120/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/120/0/kerning_overrides/120/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2fc0g"]
+line_spacing = 5.0
+font = SubResource("FontFile_wfcay")
+font_size = 120
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0384278, 0.416046, 1.61202)
+environment = SubResource("Environment_1kpqk")
+attributes = SubResource("CameraAttributesPractical_bwyyd")
+current = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+texture = ExtResource("1_1tkyy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00412703, 0.0297869, 0)
+shape = SubResource("BoxShape3D_xibr3")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288228, 0.000356555, 0)
+motion_mode = 1
+script = ExtResource("2_cg6c4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" groups=["Player"]]
+shape = SubResource("BoxShape3D_0a2qv")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
+sprite_frames = SubResource("SpriteFrames_lpdkp")
+animation = &"stand_up"
+
+[node name="Speech" type="Sprite2D" parent="." node_paths=PackedStringArray("speaker", "text")]
+z_index = 1
+position = Vector2(0, 440)
+scale = Vector2(0.172059, 0.172775)
+centered = false
+script = ExtResource("7_7qd7d")
+filename = "sample.txt"
+speaker = NodePath("Speaker")
+text = NodePath("Text")
+
+[node name="Speaker" type="Label" parent="Speech"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -1.0
+offset_right = 3999.5
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_enn0t")
+
+[node name="Text" type="Label" parent="Speech"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = 199.0
+offset_right = 3999.5
+offset_bottom = 1199.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"HeaderLarge"
+label_settings = SubResource("LabelSettings_2fc0g")
