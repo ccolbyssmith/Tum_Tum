@@ -11,7 +11,7 @@ Note: <direction> is the direction the character is facing.
 extends CharacterBody3D
 
 """arbitrary speed value. larger number means chracter is faster"""
-@export var speed = 1;
+@export var speed = 40;
 
 # the direction that the character is facing
 var _direction = Enums.Directions.UP;
@@ -26,7 +26,7 @@ func _ready():
 
 # Updates player location and the character animation based off
 # user input.
-func _process(delta):
+func _process(_delta):
 	# true if player moves, else false
 	var move: bool = false;
 	
@@ -54,4 +54,5 @@ func _get_input():
 # moves player character based off velocity at current time step
 func _physics_process(delta):
 	_get_input();
+	velocity *= delta * speed;
 	move_and_slide()

@@ -21,7 +21,7 @@ func _ready():
 
 
 """If enter is pressed, display the next text item"""
-func _process(delta):
+func _process(_delta):
 	var next: bool = Input.is_action_just_pressed("enter");
 	if next and not dialogue_list.dialogue_finished():
 		var next_text: Dialogue_Loader.Dialogue = dialogue_list.get_next_dialogue();
